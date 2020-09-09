@@ -1,0 +1,13 @@
+#input-search {
+    border: solid 1px #c1c1c1;
+    border-radius: 18px;
+    outline: none;
+    height: 30px;
+    display: flex;
+    flex: 100%;
+    padding-left: 30px;
+}
+
+#input-search:invalid {
+    border: 1px solid red;
+}

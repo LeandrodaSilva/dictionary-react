@@ -1,0 +1,7 @@
+.container-card {
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: white;
+    padding: 8px;
+}
