@@ -1,4 +1,6 @@
-Deployed on: https://dictionary-lingua-robot-react.herokuapp.com
+Deployed on: 
+Heroku - https://dictionary-lingua-robot-react.herokuapp.com
+GitHub IO - https://leandrodasilva.github.io
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
