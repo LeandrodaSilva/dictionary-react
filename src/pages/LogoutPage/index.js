@@ -18,5 +18,5 @@ export default function LogoutPage() {
     doLogout()
   })
 
-  return null;
+  return (<></>);
 }
