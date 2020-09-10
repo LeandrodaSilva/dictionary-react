@@ -2,5 +2,5 @@
 
 mkdir output
 
-cp build/ output/
+cp -r build output
 cp README.md output/
