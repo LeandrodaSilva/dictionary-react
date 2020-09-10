@@ -5,7 +5,8 @@ import Button from "../../components/Button";
 import SessionStorage from "../../util/SessionStorage";
 import {useDispatch} from "react-redux";
 import {authActions} from "../../store/authSlice";
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import logo from "../../assets/images/book-24px.svg";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -36,29 +37,35 @@ export default function LoginPage() {
     });
   }
   return (
-    <main className="container-login">
-      <form>
-        <label htmlFor="input-email">E-mail:</label>
-        <input id="input-email"
-               className="hover-effect"
-               type="text"
-               title="Search field"
-               required
-               value={email}
-               onChange={evt => setEmail(evt.target.value)}
-               autoFocus />
+    <>
+      <header className="container-header">
+        <img src={logo} alt="Open book" />
+        <h1 title="Dictionary">Dictionary</h1>
+      </header>
+      <main className="container-login">
+        <form>
+          <label htmlFor="input-email">E-mail:</label>
+          <input id="input-email"
+                 className="hover-effect"
+                 type="text"
+                 title="Search field"
+                 required
+                 value={email}
+                 onChange={evt => setEmail(evt.target.value)}
+                 autoFocus />
 
-        <label htmlFor="input-password">Senha:</label>
-        <input id="input-password"
-               className="hover-effect"
-               type="password"
-               title="Search field"
-               required
-               value={password}
-               onChange={evt => setPassword(evt.target.value)}
-               autoFocus />
-        <Button onClick={doLogin} type="button" text="Logar" />
-      </form>
-    </main>
+          <label htmlFor="input-password">Senha:</label>
+          <input id="input-password"
+                 className="hover-effect"
+                 type="password"
+                 title="Search field"
+                 required
+                 value={password}
+                 onChange={evt => setPassword(evt.target.value)}
+                 autoFocus />
+          <Button onClick={doLogin} type="button" text="Logar" />
+        </form>
+      </main>
+    </>
   )
 }
