@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./styles.css";
 import {useDispatch} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
@@ -11,14 +11,23 @@ import Button from "../../components/Button";
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [isPasswordValid, setIsValidPassword] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordRetyped, setPasswordRetyped] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
   async function doRegister(evt) {
     evt.preventDefault();
 
-    if (isLoading) return;
+    if (!isPasswordValid) {
+      alert("passwords don't match");
+      return
+    }
+
+    if (isLoading) {
+      return
+    }
 
     setIsLoading(true);
     auth.post('/api/register', {
@@ -41,6 +50,14 @@ export default function RegisterPage() {
     });
     setIsLoading(false);
   }
+
+  function checkPassword() {
+    setIsValidPassword(!!(password.length && passwordRetyped.length && password === passwordRetyped));
+    console.log(isPasswordValid)
+  }
+
+  useEffect(() => checkPassword(), [password, passwordRetyped])
+
   return (
     <>
       <header className="container-header">
@@ -55,7 +72,7 @@ export default function RegisterPage() {
             <input id="input-email"
                    className="hover-effect"
                    type="text"
-                   title="Search field"
+                   title="E-mail"
                    required
                    value={email}
                    onChange={evt => setEmail(evt.target.value)}
@@ -65,12 +82,26 @@ export default function RegisterPage() {
             <input id="input-password"
                    className="hover-effect"
                    type="password"
-                   title="Search field"
+                   title="Password"
                    required
                    value={password}
                    onChange={evt => setPassword(evt.target.value)}
                    autoFocus />
-            <Link className="login-link" to="/login" >I already have an account</Link>
+
+           <label htmlFor="input-password-retype">Retype password:</label>
+            <input id="input-password-retype"
+                   className="hover-effect"
+                   type="password"
+                   title="Retype password"
+                   required
+                   value={passwordRetyped}
+                   onChange={evt => setPasswordRetyped(evt.target.value)}
+                   autoFocus />
+            {
+              !isPasswordValid && password.length && passwordRetyped.length
+                ? <span className="invalid-password">passwords don't match</span> : null
+            }
+            <Link className="login-link" to="/login">I already have an account</Link>
             <Button onClick={doRegister} type="button" text={isLoading ? "...Loading" : "Register"} />
           </section>
         </form>

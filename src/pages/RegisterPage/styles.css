@@ -9,3 +9,9 @@
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
+.invalid-password {
+    color: red;
+    display: block;
+    margin: 10px 0;
+}
