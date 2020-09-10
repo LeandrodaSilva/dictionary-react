@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: creates output
-        run:  yarn build
+        run:  /usr/bin/docker run hello-world
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
         env:
