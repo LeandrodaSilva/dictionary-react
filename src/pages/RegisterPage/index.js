@@ -51,12 +51,10 @@ export default function RegisterPage() {
     setIsLoading(false);
   }
 
-  function checkPassword() {
+  useEffect(() => {
     setIsValidPassword(!!(password.length && passwordRetyped.length && password === passwordRetyped));
     console.log(isPasswordValid)
-  }
-
-  useEffect(() => checkPassword(), [password, passwordRetyped])
+  }, [password, passwordRetyped, isPasswordValid])
 
   return (
     <>
