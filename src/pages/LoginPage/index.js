@@ -9,6 +9,7 @@ import {useHistory} from 'react-router-dom';
 import logo from "../../assets/images/book-24px.svg";
 
 export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ export default function LoginPage() {
   async function doLogin(evt) {
     evt.preventDefault();
 
+    if (isLoading) return;
+
+    setIsLoading(true);
     auth.post('/api/login', {
       email: email,
       password: password
@@ -35,6 +39,7 @@ export default function LoginPage() {
         alert(`Ocorreu um erro desconhecido`)
       }
     });
+    setIsLoading(false);
   }
   return (
     <>
@@ -63,7 +68,7 @@ export default function LoginPage() {
                  value={password}
                  onChange={evt => setPassword(evt.target.value)}
                  autoFocus />
-          <Button onClick={doLogin} type="button" text="Logar" />
+          <Button onClick={doLogin} type="button" text={isLoading ? "...Loading" : "Login"} />
         </form>
       </main>
     </>
