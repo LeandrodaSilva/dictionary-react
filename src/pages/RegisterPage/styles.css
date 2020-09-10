@@ -1,12 +1,11 @@
-.container-login {
+.container-register {
     display: flex;
     position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
-.container-login input {
+.container-register input {
     margin-top: 5px;
     margin-bottom: 10px;
 }

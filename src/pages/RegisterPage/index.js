@@ -1,27 +1,27 @@
 import React, {useState} from "react";
 import "./styles.css";
-import auth from "../../services/auth";
-import Button from "../../components/Button";
-import SessionStorage from "../../util/SessionStorage";
 import {useDispatch} from "react-redux";
+import {Link, useHistory} from "react-router-dom";
+import auth from "../../services/auth";
+import SessionStorage from "../../util/SessionStorage";
 import {authActions} from "../../store/authSlice";
-import {Link, useHistory} from 'react-router-dom';
 import logo from "../../assets/images/book-24px.svg";
+import Button from "../../components/Button";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
-  async function doLogin(evt) {
+  async function doRegister(evt) {
     evt.preventDefault();
 
     if (isLoading) return;
 
     setIsLoading(true);
-    auth.post('/api/login', {
+    auth.post('/api/register', {
       email: email,
       password: password
     })
@@ -34,9 +34,9 @@ export default function LoginPage() {
     })
     .catch(error => {
       if (error.response && error.response.data && error.response.data.error) {
-        alert(`Falha no login: ${error.response.data.error}`)
+        alert(`${error.response.data.error}`)
       } else {
-        alert(`Ocorreu um erro desconhecido`)
+        alert(`An unexpected error occurred`)
       }
     });
     setIsLoading(false);
@@ -47,10 +47,10 @@ export default function LoginPage() {
         <img src={logo} alt="Open book" />
         <h1 title="Dictionary">Dictionary</h1>
       </header>
-      <main className="container-login">
+      <main className="container-register">
         <form>
           <section>
-            <h2>Login</h2>
+            <h2>Register</h2>
             <label htmlFor="input-email">E-mail:</label>
             <input id="input-email"
                    className="hover-effect"
@@ -70,8 +70,8 @@ export default function LoginPage() {
                    value={password}
                    onChange={evt => setPassword(evt.target.value)}
                    autoFocus />
-            <Link className="register-link" to="/register" >Don't have an account?</Link>
-            <Button onClick={doLogin} type="button" text={isLoading ? "...Loading" : "Login"} />
+            <Link className="login-link" to="/login" >I already have an account</Link>
+            <Button onClick={doRegister} type="button" text={isLoading ? "...Loading" : "Register"} />
           </section>
         </form>
       </main>
