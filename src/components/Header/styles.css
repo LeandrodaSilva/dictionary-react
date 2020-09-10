@@ -9,6 +9,14 @@
     text-align: center;
 }
 
+.container-header.big h1 {
+    font-size: 3rem;
+}
+
+.container-header.big img {
+    width: 3rem;
+}
+
 .container-header img {
     padding-right: 10px;
     transform: rotate(-8deg);
@@ -16,4 +24,11 @@
 
 .container-header h1::first-letter {
     color: #8A24B2;
+}
+
+.container-login-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
 }

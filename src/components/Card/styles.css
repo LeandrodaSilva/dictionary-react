@@ -1,7 +1,7 @@
 .container-card {
-    border: none;
+    border: solid 3px transparent;
     border-radius: 12px;
     margin-bottom: 15px;
-    background: white;
     padding: 8px;
+    background-color: #8A24B2;
 }

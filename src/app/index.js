@@ -1,16 +1,10 @@
 import React from 'react';
-import Routes from "../routes";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import './styles.css';
+import Routes from "../routes";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes />
-      <Footer />
-    </>
+    <Routes />
   );
 }
 
