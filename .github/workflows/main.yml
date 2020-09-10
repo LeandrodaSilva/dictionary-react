@@ -14,15 +14,21 @@ jobs:
     runs-on: ubuntu-latest
     container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
-      - name: creates output
-        run:  sh ./build.sh
+      - uses: actions/checkout@master
+      - name: Install
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: install
+      - name: Build
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: build
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'output'
+          source-directory: 'build'
           destination-github-username: 'LeandrodaSilva'
           destination-repository-name: 'LeandrodaSilva.github.io'
           user-email: ld_silva13@hotmail.com
