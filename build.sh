@@ -2,4 +2,4 @@
 
 mkdir output
 
-cp build/* output/
+cp build output
