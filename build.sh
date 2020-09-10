@@ -1,6 +1,6 @@
 #!/bin/sh
 
 mkdir output
-
-cp -r build output
+yarn -v
+cp -r build/ output
 cp README.md output/
