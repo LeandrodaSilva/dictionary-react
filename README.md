@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 Deployed on: https://dictionary-lingua-robot-react.herokuapp.com
->>>>>>> dc61bf8495766580fdaa287323f79633f479d3b7
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
