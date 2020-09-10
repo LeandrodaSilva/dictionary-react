@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: creates output
-        run:  sh ./build.sh
+        run:  yarn build
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
         env:
