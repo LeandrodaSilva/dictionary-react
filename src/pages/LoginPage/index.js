@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {authActions} from "../../store/authSlice";
 import {Link, useHistory} from 'react-router-dom';
 import logo from "../../assets/images/book-24px.svg";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function doLogin(evt) {
     evt.preventDefault();
@@ -34,13 +36,21 @@ export default function LoginPage() {
     })
     .catch(error => {
       if (error.response && error.response.data && error.response.data.error) {
-        alert(`Falha no login: ${error.response.data.error}`)
+        setErrorMessage(`Login error: ${error.response.data.error}`)
       } else {
-        alert(`Ocorreu um erro desconhecido`)
+        setErrorMessage(`Unexpected error`)
       }
     });
     setIsLoading(false);
   }
+
+  function renderErrorMessage() {
+    if (!errorMessage) {
+      return null;
+    }
+    return (<span className="error-message">{errorMessage}</span>)
+  }
+
   return (
     <>
       <header className="container-header">
@@ -48,30 +58,49 @@ export default function LoginPage() {
         <h1 title="Dictionary">Dictionary</h1>
       </header>
       <main className="container-login">
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link color="inherit" to="/">Home</Link>
+          <Link
+              color="textPrimary"
+              to="/login"
+              aria-current="page"
+          >
+            Login
+          </Link>
+        </Breadcrumbs>
         <form>
-          <section>
+          <section className="container-login">
             <h2>Login</h2>
-            <label htmlFor="input-email">E-mail:</label>
-            <input id="input-email"
-                   className="hover-effect"
-                   type="text"
-                   title="Search field"
-                   required
-                   value={email}
-                   onChange={evt => setEmail(evt.target.value)}
-                   autoFocus />
+            <div>
+              <label htmlFor="input-email">E-mail:</label>
+              <input id="input-email"
+                     className="hover-effect"
+                     type="text"
+                     title="Search field"
+                     placeholder="eve.holt@reqres.in"
+                     required
+                     value={email}
+                     onChange={evt => setEmail(evt.target.value)}
+                     autoFocus />
+            </div>
 
-            <label htmlFor="input-password">Password:</label>
-            <input id="input-password"
-                   className="hover-effect"
-                   type="password"
-                   title="Search field"
-                   required
-                   value={password}
-                   onChange={evt => setPassword(evt.target.value)}
-                   autoFocus />
-            <Link className="register-link" to="/register" >Don't have an account?</Link>
+            <div>
+              <label htmlFor="input-password">Password:</label>
+              <input id="input-password"
+                     className="hover-effect"
+                     type="password"
+                     title="Search field"
+                     placeholder="cityslicka"
+                     required
+                     value={password}
+                     onChange={evt => setPassword(evt.target.value)}
+                     autoFocus />
+            </div>
+
+            {renderErrorMessage()}
+
             <Button onClick={doLogin} type="button" text={isLoading ? "...Loading" : "Login"} />
+            <Link className="register-link" to="/register" >Don't have an account?</Link>
           </section>
         </form>
       </main>
