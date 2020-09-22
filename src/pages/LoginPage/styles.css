@@ -7,6 +7,27 @@
 }
 
 .container-login input {
+    justify-content: center;
+    align-items: center;
+}
+
+.container-login div {
+    flex-direction: row;
+}
+
+.container-login .error-message {
+    color: red;
+}
+
+.container-login button {
+    margin: 10px;
+}
+
+.container-login input {
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+.container-login .register-link {
+    padding: 10px;
 }

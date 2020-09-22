@@ -10,8 +10,15 @@
     margin-bottom: 10px;
 }
 
-.invalid-password {
+.container-register .error-message {
     color: red;
     display: block;
-    margin: 10px 0;
+    margin: 10px;
+}
+.container-register button {
+    margin: 10px;
+}
+
+.container-register .login-link {
+    padding: 10px;
 }
