@@ -26,7 +26,7 @@ body {
 }
 
 .hover-effect:hover, *:focus {
-  border: solid 3px #4b20e9;
+  border: solid 1px #4b20e9;
   box-shadow: 4px 4px 4px 1px rgb(141, 141, 141);
 }
 
@@ -42,6 +42,19 @@ input {
 
 input:invalid {
   border: 1px solid red;
+}
+
+a:link {
+  color: #4b20e9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #8A24B2;
 }
 
 
