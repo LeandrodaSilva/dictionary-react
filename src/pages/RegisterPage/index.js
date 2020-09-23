@@ -111,7 +111,7 @@ export default function RegisterPage() {
                      required
                      value={password}
                      onChange={evt => setPassword(evt.target.value)}
-                     autoFocus />
+              />
             </div>
 
             <div>
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                      required
                      value={passwordRetyped}
                      onChange={evt => setPasswordRetyped(evt.target.value)}
-                     autoFocus />
+              />
             </div>
 
             {renderErrorMessage()}

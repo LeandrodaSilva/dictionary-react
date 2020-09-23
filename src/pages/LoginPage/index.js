@@ -94,7 +94,7 @@ export default function LoginPage() {
                      required
                      value={password}
                      onChange={evt => setPassword(evt.target.value)}
-                     autoFocus />
+              />
             </div>
 
             {renderErrorMessage()}
