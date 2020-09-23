@@ -72,7 +72,7 @@ export default function RegisterPage() {
     <>
       <header className="container-header">
         <img src={logo} alt="Open book" />
-        <h1 title="Dictionary">Dictionary</h1>
+        <h1 title="Dictionary"><span className="letter" data-letter="D">D</span>ictionary</h1>
       </header>
       <main className="container-register">
         <Breadcrumbs aria-label="breadcrumb">

@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className={isLogged ? "container-header" : "container-header big"}>
       <img src={logo} alt="Open book" />
-      <h1 title="Dictionary">Dictionary</h1>
+      <h1 title="Dictionary"><span className="letter" data-letter="D">D</span>ictionary</h1>
       <div className="container-login-link">
         {
           isLogged ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>
