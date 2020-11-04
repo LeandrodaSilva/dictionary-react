@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {entries_map, wordActions} from "../../store/wordSlice";
 import Search from "../../components/Search";
 import Button from "../../components/Button";
 import CardList from "../../components/CardList";
 import "./styles.css";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import {text_map} from "../../store/searchSlice";
 import dictionary from "../../services/dictionary";
+import SessionStorage from "../../util/SessionStorage";
+import View from "../../components/View";
 
 export default function SearchPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,24 +22,35 @@ export default function SearchPage() {
     if (isLoading) return;
 
     setIsLoading(true);
-    const resp = await dictionary.get(`search?word=${text}`);
 
-    dispatch(wordActions.setEntries(resp.data));
+    try {
+      const resp = await dictionary.get(`search?word=${text}`,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + SessionStorage.getSession(),
+          }
+        }
+      );
+
+      dispatch(wordActions.setEntries(resp.data));
+    } catch (error) {
+      console.log(error);
+    }
+
     setIsLoading(false);
+    return null;
   }
 
   return (
-    <>
-      <Header />
-      <main>
+    <View>
+      <div className="container-search">
+        <h2>Search words in Lingua Robot</h2>
         <form autoComplete="off">
           <Search />
           <Button onClick={search} type="submit" text={isLoading ? "...Loading" : "Search"} />
-
-          {entries.length ? <CardList /> : null}
         </form>
-      </main>
-      <Footer />
-    </>
+        <div>{entries.length ? <CardList /> : null}</div>
+      </div>
+    </View>
   )
 }

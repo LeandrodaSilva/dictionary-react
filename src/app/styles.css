@@ -5,18 +5,13 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #fff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
-}
-
-body {
-  padding: 8px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #fff;
-  margin: 8px;
 }
 
 .container, button {
@@ -27,7 +22,7 @@ body {
 
 .hover-effect:hover, *:focus {
   border: solid 1px #4b20e9;
-  box-shadow: 4px 4px 4px 1px rgb(141, 141, 141);
+  box-shadow: 1px 1px 1px 1px rgb(141, 141, 141);
 }
 
 input {

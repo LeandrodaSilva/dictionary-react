@@ -8,6 +8,7 @@ import {authActions} from "../../store/authSlice";
 import logo from "../../assets/images/book-24px.svg";
 import Button from "../../components/Button";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import View from "../../components/View";
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +33,7 @@ export default function RegisterPage() {
     }
 
     setIsLoading(true);
-    auth.post('/api/register', {
+    auth.post('/register', {
       email: email,
       password: password
     })
@@ -45,7 +46,7 @@ export default function RegisterPage() {
     })
     .catch(error => {
       if (error.response && error.response.data && error.response.data.error) {
-        setErrorMessage(`${error.response.data.error}`)
+        setErrorMessage(`${error.response.data.validation.body.message}`)
       } else {
         setErrorMessage(`An unexpected error occurred`)
       }
@@ -69,71 +70,69 @@ export default function RegisterPage() {
   }, [password, passwordRetyped, isPasswordValid])
 
   return (
-    <>
-      <header className="container-header">
-        <img src={logo} alt="Open book" />
-        <h1 title="Dictionary"><span className="letter" data-letter="D">D</span>ictionary</h1>
-      </header>
-      <main className="container-register">
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link color="inherit" to="/">Home</Link>
-          <Link
-              color="textPrimary"
-              to="/register"
-              aria-current="page"
-          >
-            Register
-          </Link>
-        </Breadcrumbs>
-        <form>
-          <section className="container-register">
-            <h2>Register</h2>
-            <div>
-              <label htmlFor="input-email">E-mail:</label>
-              <input id="input-email"
-                     className="hover-effect"
-                     type="text"
-                     title="E-mail"
-                     placeholder="example@email.com"
-                     required
-                     value={email}
-                     onChange={evt => setEmail(evt.target.value)}
-                     autoFocus />
-            </div>
+    <View>
+        <div className="root-register">
+          <div className="container-register">
+            <Breadcrumbs aria-label="breadcrumb">
+              <Link color="inherit" to="/">Home</Link>
+              <Link
+                color="textPrimary"
+                to="/register"
+                aria-current="page"
+              >
+                Register
+              </Link>
+            </Breadcrumbs>
+            <form>
+              <section>
+                <h2>Register</h2>
+                <div>
+                  <label htmlFor="input-email">E-mail:</label>
+                  <input id="input-email"
+                         className="hover-effect"
+                         type="text"
+                         title="E-mail"
+                         placeholder="example@email.com"
+                         required
+                         value={email}
+                         onChange={evt => setEmail(evt.target.value)}
+                         autoFocus />
+                </div>
 
-            <div>
-              <label htmlFor="input-password">Password:</label>
-              <input id="input-password"
-                     className="hover-effect"
-                     type="password"
-                     title="Password"
-                     placeholder="password"
-                     required
-                     value={password}
-                     onChange={evt => setPassword(evt.target.value)}
-              />
-            </div>
+                <div>
+                  <label htmlFor="input-password">Password:</label>
+                  <input id="input-password"
+                         className="hover-effect"
+                         type="password"
+                         title="Password"
+                         placeholder="password"
+                         required
+                         value={password}
+                         onChange={evt => setPassword(evt.target.value)}
+                  />
+                </div>
 
-            <div>
-              <label htmlFor="input-password-retype">Retype password:</label>
-              <input id="input-password-retype"
-                     className="hover-effect"
-                     type="password"
-                     title="Retype password"
-                     placeholder="password"
-                     required
-                     value={passwordRetyped}
-                     onChange={evt => setPasswordRetyped(evt.target.value)}
-              />
-            </div>
+                <div>
+                  <label htmlFor="input-password-retype">Retype password:</label>
+                  <input id="input-password-retype"
+                         className="hover-effect"
+                         type="password"
+                         title="Retype password"
+                         placeholder="password"
+                         required
+                         value={passwordRetyped}
+                         onChange={evt => setPasswordRetyped(evt.target.value)}
+                  />
+                </div>
 
-            {renderErrorMessage()}
+                {renderErrorMessage()}
 
-            <Button onClick={doRegister} type="button" text={isLoading ? "...Loading" : "Register"} />
-            <Link className="login-link" to="/login">I already have an account</Link>
-          </section>
-        </form>
-      </main>
-    </>
+                <Button onClick={doRegister} type="button" text={isLoading ? "...Loading" : "Register"} />
+                <Link className="login-link" to="/login">I already have an account</Link>
+              </section>
+            </form>
+          </div>
+        </div>
+    </View>
   )
 }

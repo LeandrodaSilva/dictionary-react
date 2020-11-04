@@ -8,6 +8,7 @@ import {authActions} from "../../store/authSlice";
 import {Link, useHistory} from 'react-router-dom';
 import logo from "../../assets/images/book-24px.svg";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import View from "../../components/View";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,7 @@ export default function LoginPage() {
     if (isLoading) return;
 
     setIsLoading(true);
-    auth.post('/api/login', {
+    auth.post('/login', {
       email: email,
       password: password
     })
@@ -52,58 +53,56 @@ export default function LoginPage() {
   }
 
   return (
-    <>
-      <header className="container-header">
-        <img src={logo} alt="Open book" />
-        <h1 title="Dictionary"><span className="letter" data-letter="D">D</span>ictionary</h1>
-      </header>
-      <main className="container-login">
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link color="inherit" to="/">Home</Link>
-          <Link
-              color="textPrimary"
-              to="/login"
-              aria-current="page"
-          >
-            Login
-          </Link>
-        </Breadcrumbs>
-        <form>
-          <section className="container-login">
-            <h2>Login</h2>
-            <div>
-              <label htmlFor="input-email">E-mail:</label>
-              <input id="input-email"
-                     className="hover-effect"
-                     type="text"
-                     title="Search field"
-                     placeholder="eve.holt@reqres.in"
-                     required
-                     value={email}
-                     onChange={evt => setEmail(evt.target.value)}
-                     autoFocus />
-            </div>
+     <View>
+        <div className="root-login">
+          <div className="container-login">
+            <Breadcrumbs aria-label="breadcrumb">
+              <Link color="inherit" to="/">Home</Link>
+              <Link
+                color="textPrimary"
+                to="/login"
+                aria-current="page"
+              >
+                Login
+              </Link>
+            </Breadcrumbs>
+            <form>
+              <section>
+                <h2>Login</h2>
+                <div>
+                  <label htmlFor="input-email">E-mail:</label>
+                  <input id="input-email"
+                         className="hover-effect"
+                         type="text"
+                         title="Search field"
+                         placeholder="eve.holt@reqres.in"
+                         required
+                         value={email}
+                         onChange={evt => setEmail(evt.target.value)}
+                         autoFocus />
+                </div>
 
-            <div>
-              <label htmlFor="input-password">Password:</label>
-              <input id="input-password"
-                     className="hover-effect"
-                     type="password"
-                     title="Search field"
-                     placeholder="cityslicka"
-                     required
-                     value={password}
-                     onChange={evt => setPassword(evt.target.value)}
-              />
-            </div>
+                <div>
+                  <label htmlFor="input-password">Password:</label>
+                  <input id="input-password"
+                         className="hover-effect"
+                         type="password"
+                         title="Search field"
+                         placeholder="cityslicka"
+                         required
+                         value={password}
+                         onChange={evt => setPassword(evt.target.value)}
+                  />
+                </div>
 
-            {renderErrorMessage()}
+                {renderErrorMessage()}
 
-            <Button onClick={doLogin} type="button" text={isLoading ? "...Loading" : "Login"} />
-            <Link className="register-link" to="/register" >Don't have an account?</Link>
-          </section>
-        </form>
-      </main>
-    </>
+                <Button onClick={doLogin} type="button" text={isLoading ? "...Loading" : "Login"} />
+                <Link className="register-link" to="/register" >Don't have an account?</Link>
+              </section>
+            </form>
+          </div>
+        </div>
+     </View>
   )
 }

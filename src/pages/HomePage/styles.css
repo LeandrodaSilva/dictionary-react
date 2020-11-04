@@ -2,5 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 90vh;
+}
+
+h2.title {
+    font-size: 2em;
 }

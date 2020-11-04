@@ -10,7 +10,7 @@ export default function Input() {
 
   return (
     <>
-      <label htmlFor="input-search" hidden>Pesquisa:</label>
+      <label htmlFor="input-search" hidden>Search words:</label>
       <input id="input-search"
              className="hover-effect"
              type="text"

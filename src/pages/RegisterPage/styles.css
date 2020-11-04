@@ -1,3 +1,11 @@
+.root-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .container-register {
     display: flex;
     position: relative;
@@ -5,11 +13,8 @@
     justify-content: center;
     align-items: center;
     background-color: #e9e9e9;
-    padding: 20px;
+    padding: 40pt;
     border-radius: 10px;
-}
-
-main.container-register {
     box-shadow: 4px 4px 4px 1px rgb(210, 210, 210);
 }
 

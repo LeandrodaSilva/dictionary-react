@@ -1,8 +1,5 @@
-body, html{
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body, html, #root{
+    width: 100%;
 }
 
 *,
@@ -20,9 +17,9 @@ div.foo {
     font-weight: 900;
     font-size: 1.5em;
     position: relative;
-    color: #00bfa5;
+    color: #8A24B2;
     transform-style: preserve-3d;
-    perspective: 400;
+    perspective: 400px;
     z-index: 1;
 }
 .letter:before,
