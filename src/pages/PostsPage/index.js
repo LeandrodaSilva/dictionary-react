@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./styles.css";
 import View from "../../components/View";
 import dictionary from "../../services/dictionary";
@@ -37,9 +37,9 @@ export default function PostsPage() {
     setIsLoading(false);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getFiles();
-  }, [imgs])
+  }, [getFiles, imgs])
 
   return (
     <View>

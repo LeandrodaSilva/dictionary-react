@@ -5,7 +5,6 @@ import {Link, useHistory} from "react-router-dom";
 import auth from "../../services/auth";
 import SessionStorage from "../../util/SessionStorage";
 import {authActions} from "../../store/authSlice";
-import logo from "../../assets/images/book-24px.svg";
 import Button from "../../components/Button";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import View from "../../components/View";

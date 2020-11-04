@@ -6,7 +6,6 @@ import SessionStorage from "../../util/SessionStorage";
 import {useDispatch} from "react-redux";
 import {authActions} from "../../store/authSlice";
 import {Link, useHistory} from 'react-router-dom';
-import logo from "../../assets/images/book-24px.svg";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import View from "../../components/View";
 
