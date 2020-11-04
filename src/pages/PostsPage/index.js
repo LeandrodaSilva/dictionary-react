@@ -39,7 +39,7 @@ export default function PostsPage() {
       }
       getFiles();
     },
-    [],
+    [dispatch, imgs, isLoading],
   );
 
   return (
