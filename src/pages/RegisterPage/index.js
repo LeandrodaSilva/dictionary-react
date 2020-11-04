@@ -45,7 +45,7 @@ export default function RegisterPage() {
     })
     .catch(error => {
       if (error.response && error.response.data && error.response.data.error) {
-        setErrorMessage(`${error.response.data.validation.body.message}`)
+        setErrorMessage(`${error.response.data.error}`)
       } else {
         setErrorMessage(`An unexpected error occurred`)
       }

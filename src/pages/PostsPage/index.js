@@ -14,32 +14,33 @@ export default function PostsPage() {
   const imgs = useSelector(images_map);
   const dispatch = useDispatch();
 
-
-  async function getFiles() {
-    if (isLoading || !imgs) {
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const resp = await dictionary.get('file',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + SessionStorage.getSession(),
-          }
+  useEffect(
+    () => {
+      async function getFiles() {
+        if (isLoading || !imgs) {
+          return;
         }
-      );
-      dispatch(imageActions.setImages(resp.data));
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
-  }
 
-  useEffect(() => {
-    getFiles();
-  }, [getFiles, imgs])
+        setIsLoading(true);
+
+        try {
+          const resp = await dictionary.get('file',
+            {
+              headers: {
+                'Authorization': 'Bearer ' + SessionStorage.getSession(),
+              }
+            }
+          );
+          dispatch(imageActions.setImages(resp.data));
+        } catch (error) {
+          console.log(error);
+        }
+        setIsLoading(false);
+      }
+      getFiles();
+    },
+    [],
+  );
 
   return (
     <View>
